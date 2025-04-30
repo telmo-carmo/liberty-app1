@@ -28,7 +28,7 @@ public class BonusRepository implements IBonusRepository {
              ResultSet resultSet = statement.executeQuery()) {
             if (resultSet.next()) {
                 int count = resultSet.getInt(1);
-                Log.infof("Count query result: %d", count);
+                logger.info("Count query result: " + count);
                 return count;
             }
         } catch (SQLException e) {
@@ -64,7 +64,7 @@ public class BonusRepository implements IBonusRepository {
             statement.setString(1, ename);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    Log.infof("Bonus found for ename: %s", ename);
+                    logger.info("Bonus found for ename: {}", ename);
                     return mapRowToBonus(resultSet);
                 }
             }
