@@ -12,3 +12,7 @@ Content-Type: application/json
   "value": "hello"
 }
 ###
+
+GET {{host1}}/v1/api/bonus
+
+###
