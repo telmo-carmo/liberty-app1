@@ -7,7 +7,7 @@ GET {{host1}}/health
 GET {{host1}}/app1/v1/api/props
 
 ###
-POST {{host1}}/v1/api/props
+POST {{host1}}/app1/v1/api/props
 Content-Type: application/json
 
 {
@@ -16,6 +16,6 @@ Content-Type: application/json
 }
 ###
 
-GET {{host1}}/v1/api/bonus
+GET {{host1}}/app1/v1/api/bonus
 
 ###
