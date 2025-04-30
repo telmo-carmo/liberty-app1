@@ -1,7 +1,10 @@
-@host1 = http://localhost:9080/app1
+@host1 = http://localhost:9080
 
 ###
-GET {{host1}}/v1/api/props
+GET {{host1}}/health
+
+###
+GET {{host1}}/app1/v1/api/props
 
 ###
 POST {{host1}}/v1/api/props

@@ -40,9 +40,4 @@
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 
-    <mpLogging>
-        <console messageFormat="basic" level="INFO"/>
-        <file filename="logs/app.log" maxFileSize="10MB" maxFiles="3" level="DEBUG"/>
-        <logger name="pt.dsi" level="DEBUG"/>
-    </mpLogging>
 </server>
