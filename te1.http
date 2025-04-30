@@ -1,0 +1,14 @@
+@host1 = http://localhost:9080/app1
+
+###
+GET {{host1}}/v1/api/props
+
+###
+POST {{host1}}/v1/api/props
+Content-Type: application/json
+
+{
+  "name": "test",
+  "value": "hello"
+}
+###
