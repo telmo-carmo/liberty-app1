@@ -33,3 +33,13 @@ Java SE versions and where to obtain them, reference the Java SE support page
 
 If you find any issues with the starter project or have recommendations to improve it, open an 
 issue in the starter GitHub repo (https://github.com/OpenLiberty/start.openliberty.io).
+
+---
+
+echo "# liberty-app1" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/telmo-carmo/liberty-app1.git
+git push -u origin main
