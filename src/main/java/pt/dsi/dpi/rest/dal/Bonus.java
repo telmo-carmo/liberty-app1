@@ -1,7 +1,10 @@
 
 package  pt.dsi.dpi.rest.dal;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+@Schema(name = "Bonus",
+description = "POJO that represents the Employee Bonus contents.")
 public class Bonus {
     private String   ename;
     private String   job;
