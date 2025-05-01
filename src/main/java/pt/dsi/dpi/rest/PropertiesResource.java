@@ -18,6 +18,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -162,6 +163,7 @@ public class PropertiesResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @RolesAllowed({ "admin", "user" })
     @APIResponses(value = {
         @APIResponse(responseCode = "200",
             description = "Successfully updated system"),
@@ -220,6 +222,7 @@ public class PropertiesResource {
     @Path("/{hostname}")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @RolesAllowed({ "admin"})
     @APIResponses(value = {
         @APIResponse(responseCode = "200",
             description = "Successfully deleted the system from inventory"),

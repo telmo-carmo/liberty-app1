@@ -45,5 +45,19 @@ git remote add origin https://github.com/telmo-carmo/liberty-app1.git
 git push -u origin main
 
 ---
-work on Ubuntu with  
+
+# Create a JCEKS keystore
+keytool -genseckey -alias jwtSecret -keyalg AES -keysize 256 -storetype JCEKS -keystore jwtkeystore.jceks -storepass myPassword
+
+# (Optional) Verify the keystore contents
+keytool -list -keystore jwtkeystore.jceks -storepass myPassword -v
+
+Warning:
+The JCEKS keystore uses a proprietary format. It is recommended to migrate to PKCS12 
+which is an industry standard format using 
+"keytool -importkeystore -srckeystore jwtkeystore.jceks -destkeystore jwtkeystore.jceks -deststoretype pkcs12".
+
+copy jwtkeystore.jceks  to  src/main/resources/security
+------------
+works on Ubuntu with  
 Launching defaultServer (Open Liberty 25.0.0.4/wlp-1.0.100.cl250420250407-1902) on OpenJDK 64-Bit Server VM, version 21.0.6+7-LTS (en_US)

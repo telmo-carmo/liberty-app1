@@ -10,7 +10,8 @@
         <feature>microProfile-7.0</feature>
 
         <feature>jdbc-4.3</feature>
-        <feature>jndi-1.0</feature> 
+        <feature>jndi-1.0</feature>
+        <feature>jwt-1.0</feature>
     </featureManager>
 
     <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
@@ -21,6 +22,13 @@
     <!--
     <keyStore password=""/> 
     -->
+    <jwtBuilder id="myJwtBuilder"
+                algorithm="HS256"
+                keyStoreRef="jwtKeystore"
+                keyAlias="jwtSecret" />
+
+    <keyStore id="jwtKeystore" location="${server.config.dir}/resources/security/jwtkeystore.jceks" type="JCEKS" password="myPassword"/>
+
 
     <!--For a user registry configuration, configure your user registry. For example, configure a basic user registry using the
         basicRegistry element. Specify your own user name below in the name attribute of the user element. For the password,
@@ -30,6 +38,15 @@
         <!--
         <user name="yourUserName" password="" />
         -->
+        <user name="bob"    password="321" />
+        <user name="alice"  password="123" />
+        <group name="admin">
+            <member name="bob" />
+        </group>
+        <group name="user">
+            <member name="bob" />
+            <member name="alice" />
+        </group>
     </basicRegistry>
 
     <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
@@ -42,7 +59,16 @@
     <applicationManager autoExpand="true"/>
 
     <!-- Configures the application on a specified context root -->
-    <webApplication contextRoot="${context.root}" location="liberty-app1.war" />
+    <webApplication contextRoot="${context.root}" location="liberty-app1.war" >
+        <application-bnd>
+            <security-role name="admin">
+                <group name="admin" />
+            </security-role>
+            <security-role name="user">
+                <group name="user" />
+            </security-role>
+        </application-bnd>
+    </webApplication>
 
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
