@@ -16,7 +16,7 @@ GET {{host1}}/app1/v1/api/sys
 POST {{host1}}/app1/v1/api/sys
 Content-Type: application/x-www-form-urlencoded
 
-hostname=localhost&heapSize=1000&javaVersion=11&osName=Windows 
+hostname=localhost&heapSize=1024000&javaVersion=11&osName=Windows 
 
 ###
 
