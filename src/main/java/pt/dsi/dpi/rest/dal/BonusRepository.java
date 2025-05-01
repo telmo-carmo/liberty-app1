@@ -16,8 +16,8 @@ public class BonusRepository implements IBonusRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(BonusRepository.class);
 
-
-    @Resource(lookup = "java:comp/env/jdbc/appDB1")
+    //Resource(lookup = "java:comp/env/jdbc/appDB1")
+    @Resource(lookup = "jdbc/appDB1")
     private DataSource dataSource;
 
 

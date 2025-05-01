@@ -19,3 +19,6 @@ Content-Type: application/json
 GET {{host1}}/app1/v1/api/bonus
 
 ###
+GET http://localhost:9080/openapi/ui/
+
+###
