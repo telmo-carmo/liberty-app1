@@ -31,6 +31,9 @@ DELETE {{host1}}/app1/v1/api/sys/server1
 GET {{host1}}/app1/v1/api/bonus
 
 ###
+GET {{host1}}/app1/v1/api/bonus/JONES
+
+###
 GET http://localhost:9080/openapi/ui/
 
 ###
