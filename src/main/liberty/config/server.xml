@@ -47,15 +47,15 @@
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 
-    <jdbcDriver id="SQLiteJDBCDriver" javax.sql.DataSource="org.sqlite.JDBC"/>
-
+  
     <library id="sqlite-library">
         <fileset dir="${shared.resource.dir}/" includes="sqlite-jdbc*.jar" />
     </library>
 
-    <dataSource id="DefaultDataSource" 
-            jndiName="jdbc/appDB1" jdbcDriverRef="SQLiteJDBCDriver">
+    <dataSource id="DefaultDataSource" jndiName="jdbc/appDB1">
         <jdbcDriver libraryRef="sqlite-library" />
-        <properties databaseName="${server.config.dir}/resources/sqlite/db1.db"/>
+        <properties
+            driverClassName="org.sqlite.JDBC" 
+            url="${server.config.dir}/resources/sqlite/db1.db"/>
     </dataSource>
 </server>
