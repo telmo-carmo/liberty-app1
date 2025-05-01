@@ -38,6 +38,7 @@ public class PropertiesResource {
     @Inject
     DataInventory inventory;
 
+    @GET
     @Path("/props")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
@@ -59,7 +60,6 @@ public class PropertiesResource {
     }
 
     @GET
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @APIResponseSchema(value = SystemData.class,
         responseDescription = "A list of system data stored within the inventory.",
