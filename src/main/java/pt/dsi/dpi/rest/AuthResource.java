@@ -1,5 +1,22 @@
 package pt.dsi.dpi.rest;
 
+/*
+ 
+
+maybe add this to pom.xml !!!
+
+<dependency>
+    <groupId>org.eclipse.microprofile.jwt</groupId>
+    <artifactId>microprofile-jwt-auth-api</artifactId>
+    <version>2.0.0</version>
+</dependency>
+<dependency>
+    <groupId>org.eclipse.microprofile.jwt</groupId>
+    <artifactId>microprofile-jwt-auth</artifactId>
+    <version>1.2</version>
+</dependency>
+
+ */
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HeaderParam;
