@@ -97,7 +97,7 @@ public class PropertiesResource {
                 schema = @Schema(type = SchemaType.STRING)
             )
             @PathParam("hostname") String hostname) {
-        logger.log(Level.INFO, "getSystem called with hostname: {0}", hostname);
+        logger.log(Level.WARNING, "getSystem called with hostname: {0}", hostname);
         return inventory.getSystem(hostname);
     }
 
@@ -239,7 +239,7 @@ public class PropertiesResource {
         operationId = "removeSystem"
     )
     public Response removeSystem(@PathParam("hostname") String hostname) {
-        logger.info("removeSystem called with hostname: " + hostname);
+        logger.warning("removeSystem called with hostname: " + hostname);
         SystemData s = inventory.getSystem(hostname);
         if (s != null) {
             inventory.removeSystem(s);

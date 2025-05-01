@@ -43,3 +43,7 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/telmo-carmo/liberty-app1.git
 git push -u origin main
+
+---
+work on Ubuntu with  
+Launching defaultServer (Open Liberty 25.0.0.4/wlp-1.0.100.cl250420250407-1902) on OpenJDK 64-Bit Server VM, version 21.0.6+7-LTS (en_US)
