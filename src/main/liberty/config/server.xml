@@ -54,8 +54,9 @@
 
     <dataSource id="DefaultDataSource" jndiName="jdbc/appDB1">
         <jdbcDriver libraryRef="sqlite-library" />
+          <!-- properties  driverClassName="org.sqlite.JDBC"   -->
         <properties
-            driverClassName="org.sqlite.JDBC" 
+            
             url="${server.config.dir}/resources/sqlite/db1.db"/>
     </dataSource>
 </server>
