@@ -7,16 +7,17 @@ GET {{host1}}/health
 GET {{host1}}/app1/v1/api/sys/props
 
 ###
+GET {{host1}}/app1/v1/api/sys/localhost
+
+###
 GET {{host1}}/app1/v1/api/sys
 
 ###
-POST {{host1}}/app1/v1/api/props
-Content-Type: application/json
+POST {{host1}}/app1/v1/api/sys
+Content-Type: application/x-www-form-urlencoded
 
-{
-  "name": "test",
-  "value": "hello"
-}
+hostname=localhost&heapSize=1000&javaVersion=11&osName=Windows 
+
 ###
 
 GET {{host1}}/app1/v1/api/bonus
