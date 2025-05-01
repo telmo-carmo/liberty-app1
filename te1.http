@@ -6,9 +6,7 @@ GET {{host1}}/health
 ###
 GET {{host1}}/app1/v1/api/sys/props
 
-###
-GET {{host1}}/app1/v1/api/sys/localhost
-
+#
 ###
 GET {{host1}}/app1/v1/api/sys
 
@@ -16,10 +14,21 @@ GET {{host1}}/app1/v1/api/sys
 POST {{host1}}/app1/v1/api/sys
 Content-Type: application/x-www-form-urlencoded
 
-hostname=localhost&heapSize=1024000&javaVersion=11&osName=Windows 
+hostname=server2&heapSize=2024000&javaVersion=17&osName=Linux
 
 ###
+POST {{host1}}/app1/v1/api/sys
+Content-Type: application/x-www-form-urlencoded
 
+hostname=server1&heapSize=1024000&javaVersion=11&osName=Windows
+
+###
+GET {{host1}}/app1/v1/api/sys/server1
+
+###
+DELETE {{host1}}/app1/v1/api/sys/server1
+
+###
 GET {{host1}}/app1/v1/api/bonus
 
 ###

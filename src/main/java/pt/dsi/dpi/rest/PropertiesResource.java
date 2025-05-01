@@ -13,13 +13,16 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameters;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponseSchema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.slf4j.LoggerFactory;
 
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -35,6 +38,9 @@ import pt.dsi.dpi.rest.dal.SystemData;
 
 @Path("/api/sys")
 public class PropertiesResource {
+    private static final Logger logger = Logger.getLogger(PropertiesResource.class.getName());
+
+
     @Inject
     DataInventory inventory;
 
@@ -85,13 +91,14 @@ public class PropertiesResource {
         operationId = "getSystem"
     )
     public SystemData getSystem(
-        @Parameter(
-            name = "hostname", in = ParameterIn.PATH,
-            description = "The hostname of the system",
-            required = true, example = "localhost",
-            schema = @Schema(type = SchemaType.STRING)
-        )
-        @PathParam("hostname") String hostname) {
+            @Parameter(
+                name = "hostname", in = ParameterIn.PATH,
+                description = "The hostname of the system",
+                required = true, example = "localhost",
+                schema = @Schema(type = SchemaType.STRING)
+            )
+            @PathParam("hostname") String hostname) {
+        logger.log(Level.INFO, "getSystem called with hostname: {0}", hostname);
         return inventory.getSystem(hostname);
     }
 
@@ -133,11 +140,16 @@ public class PropertiesResource {
         operationId = "addSystem"
     )
     public Response addSystem(
-        @QueryParam("hostname") String hostname,
-        @QueryParam("osName") String osName,
-        @QueryParam("javaVersion") String javaVersion,
-        @QueryParam("heapSize") Long heapSize) {
+        @FormParam("hostname") String hostname,
+        @FormParam("osName") String osName,
+        @FormParam("javaVersion") String javaVersion,
+        @FormParam("heapSize") Long heapSize) {
 
+        logger.log(Level.WARNING, "addSystem called with hostname: {0}, osName: {1}, javaVersion: {2}, heapSize: {3}",
+            new Object[]{hostname, osName, javaVersion, heapSize});
+        if (hostname == null || hostname.isEmpty()) {
+            return fail("Hostname is required.");
+        }
         SystemData s = inventory.getSystem(hostname);
         if (s != null) {
             return fail(hostname + " already exists.");
@@ -187,10 +199,13 @@ public class PropertiesResource {
     )
     public Response updateSystem(
         @PathParam("hostname") String hostname,
-        @QueryParam("osName") String osName,
-        @QueryParam("javaVersion") String javaVersion,
-        @QueryParam("heapSize") Long heapSize) {
+        @FormParam("osName") String osName,
+        @FormParam("javaVersion") String javaVersion,
+        @FormParam("heapSize") Long heapSize) {
 
+
+        logger.log(Level.INFO, "updateSystem called with hostname: {0}, osName: {1}, javaVersion: {2}, heapSize: {3}",
+            new Object[]{hostname, osName, javaVersion, heapSize});
         SystemData s = inventory.getSystem(hostname);
         if (s == null) {
             return fail(hostname + " does not exists.");
@@ -225,6 +240,7 @@ public class PropertiesResource {
         operationId = "removeSystem"
     )
     public Response removeSystem(@PathParam("hostname") String hostname) {
+        logger.info("removeSystem called with hostname: " + hostname);
         SystemData s = inventory.getSystem(hostname);
         if (s != null) {
             inventory.removeSystem(s);
