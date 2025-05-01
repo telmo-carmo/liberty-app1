@@ -48,9 +48,9 @@
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 
     <jdbcDriver id="SQLiteJDBCDriver" javax.sql.DataSource="org.sqlite.JDBC"/>
-    
+
     <library id="sqlite-library">
-        <fileset dir="${shared.resource.dir}/" includes="*.jar" />
+        <fileset dir="${shared.resource.dir}/" includes="sqlite-jdbc*.jar" />
     </library>
 
     <dataSource id="DefaultDataSource" 

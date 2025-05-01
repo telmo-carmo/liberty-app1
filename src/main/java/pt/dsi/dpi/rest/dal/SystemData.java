@@ -15,7 +15,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Schema(name = "SystemData",
-        description = "POJO that represents a single inventory entry.")
+        description = "POJO that represents a single data inventory entry.")
 @Entity
 @Table(name = "SystemData")
 @NamedQuery(name = "SystemData.findAll", query = "SELECT e FROM SystemData e")
@@ -24,10 +24,8 @@ import jakarta.persistence.Table;
 public class SystemData implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @SequenceGenerator(name = "SEQ",
-                       sequenceName = "systemData_id_seq",
-                       allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SEQ")
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "id")
     private int id;
