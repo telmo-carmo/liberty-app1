@@ -1,5 +1,6 @@
 package pt.dsi.dpi.rest.dal;
 
+import jakarta.annotation.Resource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import javax.sql.DataSource;
@@ -16,8 +17,9 @@ public class BonusRepository implements IBonusRepository {
     private static final Logger logger = LoggerFactory.getLogger(BonusRepository.class);
 
 
-    @Inject
-    DataSource dataSource;
+    @Resource(lookup = "java:comp/env/jdbc/appDB1")
+    private DataSource dataSource;
+
 
     @Override
     public int count() {
