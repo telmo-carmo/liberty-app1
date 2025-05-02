@@ -9,7 +9,7 @@
       <exclude-unlisted-classes>false</exclude-unlisted-classes>
       <properties>
         <property name="jakarta.persistence.schema-generation.database.action"
-                  value="update"/>
+                  value="create-or-extend-tables"/>
         <property name="jakarta.persistence.schema-generation.scripts.action"
                   value="none"/>
 
