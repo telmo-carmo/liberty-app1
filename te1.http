@@ -50,3 +50,8 @@ username=bob&password=1234
 ###
 GET {{host1}}/app1/v1/auth/rnd
 Authorization: {{jwt}}
+
+###
+GET {{host1}}/app1/v1/rpt/info
+
+# http://localhost:9080/app1/v1/rpt/excel1

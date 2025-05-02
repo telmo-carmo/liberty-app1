@@ -14,6 +14,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
+//import com.ibm.websphere.product.VersionInfo;
+
+
+
 @Path("/rpt")
 public class RptResource {
     @Inject
@@ -31,4 +35,27 @@ public class RptResource {
         responseBuilder.header("Content-Disposition", String.format("attachment; filename=\"%s\"", filename));
         return responseBuilder.build();
     }
+
+
+    @GET
+    @Path("/info")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Map<String, String> getInfo() {
+        Map<String, String> status = new HashMap<>();
+        status.put("java.version", System.getProperty("java.version"));
+        status.put("java.vendor", System.getProperty("java.vendor"));
+        
+        // Retrieve Open Liberty version
+        String libertyVersion =   "Open Liberty 25.0.0.4/wlp-1.0.100"; //VersionInfo.getVersion();
+        status.put("openliberty.version", libertyVersion);
+
+        Date now = new Date();
+        String isoNow = java.time.format.DateTimeFormatter.ISO_INSTANT.format(now.toInstant());
+        status.put("timestamp", isoNow);
+
+        return status;
+    }
+    
+
+    
 }

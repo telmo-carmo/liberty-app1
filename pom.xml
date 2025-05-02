@@ -93,7 +93,7 @@
                     <copyDependencies>
                         <dependencyGroup>
                             <location>${project.build.directory}/liberty/wlp/usr/shared/resources</location>
-                           <dependency>
+                            <dependency>
                                 <groupId>org.postgresql</groupId>
                                 <artifactId>postgresql</artifactId>
                                 <version>42.7.5</version>
@@ -102,6 +102,32 @@
                     </copyDependencies>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-keystore</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/defaultServer/resources/security</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/security</directory>
+                                    <includes>
+                                        <include>jwtkeystore.jceks</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 </project>

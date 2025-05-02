@@ -18,7 +18,9 @@
 
     <!-- For the keystore, default keys are generated and stored in a keystore. To provide the keystore password, generate an 
         encoded password using bin/securityUtility encode and add it below in the password attribute of the keyStore element. 
-        Then uncomment the keyStore element. -->
+        Then uncomment the keyStore element.
+           keyStore id="jwtKeystore" location="${server.config.dir}/resources/security/jwtkeystore.jceks"
+         -->
     <!--
     <keyStore password=""/> 
     -->
@@ -27,7 +29,7 @@
                 keyStoreRef="jwtKeystore"
                 keyAlias="jwtSecret" />
 
-    <keyStore id="jwtKeystore" location="${server.config.dir}/resources/security/jwtkeystore.jceks" type="JCEKS" password="myPassword"/>
+    <keyStore id="jwtKeystore" location="jwtkeystore.jceks" type="JCEKS" password="myPassword"/>
 
 
     <!--For a user registry configuration, configure your user registry. For example, configure a basic user registry using the
