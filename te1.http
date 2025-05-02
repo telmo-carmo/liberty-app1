@@ -53,7 +53,7 @@ GET http://localhost:9080/openapi/ui/
 POST {{host1}}/app1/v1/auth/login
 Content-Type: application/x-www-form-urlencoded
 
-username=bob&password=123
+username=bob&password=321
 
 ###
 @jwt = Bearer 1234
