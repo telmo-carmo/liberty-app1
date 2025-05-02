@@ -36,6 +36,17 @@ GET {{host1}}/app1/v1/api/bonus
 GET {{host1}}/app1/v1/api/bonus/JONES
 
 ###
+POST {{host1}}/app1/v1/api/bonus
+Content-Type: application/json
+
+{
+    "ename": "JONES",
+    "job": "MANAGER",
+    "sal": 456,
+    "comm": 500
+}
+
+###
 GET http://localhost:9080/openapi/ui/
 
 ###

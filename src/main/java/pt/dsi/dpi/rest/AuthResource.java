@@ -18,6 +18,7 @@ maybe add this to pom.xml !!!
 
  */
 import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.POST;
@@ -37,10 +38,12 @@ import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.logging.Logger;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import java.util.logging.Logger;
 import java.util.logging.Level;
 
 @Path("auth")
@@ -57,11 +60,12 @@ public class AuthResource {
 
     @POST
     @Path("login")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(
             @QueryParam("username") String username,
             @QueryParam("password") String password) {
-        logger.info("Generating token for user: " + username);
+        logger.info("Generating JWToken for user: " + username);
         logger.info("JWT duration: " + jwt_duration);
         String token = null;
         String u_uid = null;
@@ -89,11 +93,10 @@ public class AuthResource {
         } else {
             logger.log(Level.SEVERE,"Invalid login credentials");
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid credentials").build();
-        
         }
         Map<String, String> map1 = new HashMap<>();
 
-        map1.put("username", "demo");
+        map1.put("username", username);
         if (token != null) {
             map1.put("token", "Bearer " + token);
             map1.put("error", null);
@@ -103,7 +106,7 @@ public class AuthResource {
         }
         logger.info(String.format("AuthResource.login JWT token=%s", token));
         
-        return Response.ok(map1).build();
+        return Response.ok(map1,MediaType.APPLICATION_JSON).build();
     }
 
     @GET

@@ -77,17 +77,16 @@
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 
   
-    <library id="postgresql-library">
-        <fileset dir="${shared.resource.dir}/" includes="*.jar" />
+    <library id="sqlite-library">
+        <fileset dir="${shared.resource.dir}/" includes="sqlite*.jar" />
     </library>
 
     <dataSource id="DefaultDataSource" jndiName="jdbc/appDB1">
-        <jdbcDriver libraryRef="postgresql-library" />
-        <properties.postgresql databaseName="scottdb"
-                               serverName="localhost"
-                               portNumber="5432"
-                               user="scott"
-                               password="tiger" />
+        <jdbcDriver libraryRef="sqlite-library" />
+        <properties>
+            <property name="url" value="jdbc:sqlite:./sqlite/db1.db"/>
+        </properties>
+
     </dataSource>
 
 </server>

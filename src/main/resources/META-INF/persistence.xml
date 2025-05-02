@@ -9,11 +9,16 @@
       <exclude-unlisted-classes>false</exclude-unlisted-classes>
       <properties>
         <property name="jakarta.persistence.schema-generation.database.action"
-                  value="create"/>
+                  value="create-or-extend-tables"/>
+        <property name="jakarta.persistence.schema-generation.scripts.action"
+                  value="none"/>
+
+        <!-- 
         <property name="jakarta.persistence.schema-generation.scripts.action"
                   value="create"/>
         <property name="jakarta.persistence.schema-generation.scripts.create-target"
                   value="createDDL.ddl"/>
+        -->
       </properties>
     </persistence-unit>
 </persistence>
