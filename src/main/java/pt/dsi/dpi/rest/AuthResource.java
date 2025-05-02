@@ -62,10 +62,11 @@ public class AuthResource {
             @QueryParam("username") String username,
             @QueryParam("password") String password) {
         logger.info("Generating token for user: " + username);
+        logger.info("JWT duration: " + jwt_duration);
         String token = null;
         String u_uid = null;
         if ("123".equals(password))
-            u_uid = "1";
+            u_uid = "01";
 
         if (u_uid != null) {
             Instant expirationTime = Instant.now().plus(jwt_duration * 1000, ChronoUnit.MILLIS);
