@@ -19,6 +19,7 @@ maybe add this to pom.xml !!!
  */
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.POST;
@@ -46,7 +47,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-@Path("auth")
+@Path("/auth")
 public class AuthResource {
     private static final Logger logger = Logger.getLogger(AuthResource.class.getName());
 
@@ -59,12 +60,12 @@ public class AuthResource {
     String jwt_Secret;
 
     @POST
-    @Path("login")
+    @Path("/login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(
-            @QueryParam("username") String username,
-            @QueryParam("password") String password) {
+            @FormParam("username") String username,
+            @FormParam("password") String password) {
         logger.info("Generating JWToken for user: " + username);
         logger.info("JWT duration: " + jwt_duration);
         String token = null;

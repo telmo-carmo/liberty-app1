@@ -18,7 +18,7 @@ public class BonusRepository implements IBonusRepository {
 
     //Resource(lookup = "java:comp/env/jdbc/appDB1")
     @Resource(lookup = "jdbc/appDB1")
-    private DataSource dataSource;
+    DataSource dataSource;
 
 
     @Override
@@ -60,7 +60,7 @@ public class BonusRepository implements IBonusRepository {
     @Override
     public Bonus findOne(String ename) {
         String query = "SELECT * FROM Bonus WHERE ename = ?";
-        logger.debug("Executing findOne query for ename: {}", ename);
+        logger.warn("Executing findOne query for ename: {}", ename);
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, ename);
