@@ -10,6 +10,8 @@
     <packaging>war</packaging>
 
     <properties>
+        <poi.version>5.4.0</poi.version>
+
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -51,6 +53,18 @@
             <artifactId>postgresql</artifactId>
             <version>42.7.5</version>
             <scope>provided</scope>
+        </dependency>
+
+                <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
         </dependency>
         
     </dependencies>
