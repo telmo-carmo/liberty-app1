@@ -42,7 +42,6 @@ public class    AuthResource {
         
     @POST
     @Path("/login")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(LoginReq loginReq) {
         String username = loginReq.uid;

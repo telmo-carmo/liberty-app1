@@ -26,6 +26,13 @@ public class BonusResource {
     }
 
     @GET
+    @Path("/count")
+    public int getCount() {
+        return bonusRepository.count();
+    }
+
+
+    @GET
     @Path("/{id}")
     public Bonus getById(@PathParam("id") String id) {
         Bonus bonus = bonusRepository.findOne(id);

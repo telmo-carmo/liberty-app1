@@ -13,7 +13,9 @@
         <property name="jakarta.persistence.schema-generation.scripts.action"
                   value="none"/>
 
-        <!-- 
+        <!--
+        <property name="jakarta.persistence.schema-generation.database.action"
+                  value="create-or-extend-tables"/>
         <property name="jakarta.persistence.schema-generation.scripts.action"
                   value="create"/>
         <property name="jakarta.persistence.schema-generation.scripts.create-target"
