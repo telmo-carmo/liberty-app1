@@ -62,7 +62,7 @@ Content-Type: application/x-www-form-urlencoded
 username=bob&password=321
 
 ###
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwic3ViIjoiYm9iIiwicm9sZXMiOiJ1c2VyO2FkbWluIiwiZXhwIjoxNzQ2MjkzNzMyLCJhdWQiOlsiaHR0cHM6Ly93d3djZXJ0LmJwb3J0dWdhbC5uZXQvYWRmcy9vYXV0aDIvdG9rZW4iXX0.W9rWy2IUMpSa9RoGg9eFxrPZjiaT-ZPA2AWQDywzBzE
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwic3ViIjoiYWxpY2UiLCJyb2xlcyI6InVzZXIiLCJleHAiOjE3NDYyOTQ3NjksImlhdCI6MTc0NjI4NzU2OSwiYXVkIjpbImh0dHBzOi8vZHNpY2VydC5ub3ZvYmFuY28ucHQvb2F1dGgyL3Rva2VuIl19.3OemhORFIh-tHegfqGRfjTujAXYTx5YkL-Izgbe0mlU
 
 
 ###

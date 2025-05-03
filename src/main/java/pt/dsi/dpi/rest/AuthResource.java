@@ -45,7 +45,7 @@ public class    AuthResource {
         String token = null;
         UserInfo uinfo = null;
         if ("123".equals(password) ) {
-            uinfo = new UserInfo(1,username,"***", List.of("user"));
+            uinfo = new UserInfo(2,username,"***", List.of("user"));
         }
         else if ( "321".equals(password)) {
             uinfo = new UserInfo(1,username,"***", List.of("user","admin"));
