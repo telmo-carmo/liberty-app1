@@ -58,6 +58,7 @@ username=alice&password=123
 ###
 POST {{host1}}/app1/v1/auth/login
 Content-Type: application/application/json
+
 {
     "uid": "bob",
     "pwd": "321",
