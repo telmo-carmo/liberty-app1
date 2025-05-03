@@ -76,7 +76,8 @@
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 
-  
+   <logging consoleLogLevel="INFO" traceSpecification="pt.dsi.dpi*=debug"/>
+
     <library id="sqlite-library">
         <fileset dir="${shared.resource.dir}/" includes="sqlite*.jar" />
     </library>

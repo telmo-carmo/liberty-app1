@@ -53,14 +53,24 @@ GET http://localhost:9080/openapi/ui/
 POST {{host1}}/app1/v1/auth/login
 Content-Type: application/x-www-form-urlencoded
 
+username=alice&password=123
+
+###
+POST {{host1}}/app1/v1/auth/login
+Content-Type: application/x-www-form-urlencoded
+
 username=bob&password=321
 
 ###
-@jwt = Bearer 1234
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwic3ViIjoiYm9iIiwicm9sZXMiOiJ1c2VyO2FkbWluIiwiZXhwIjoxNzQ2MjkzNzMyLCJhdWQiOlsiaHR0cHM6Ly93d3djZXJ0LmJwb3J0dWdhbC5uZXQvYWRmcy9vYXV0aDIvdG9rZW4iXX0.W9rWy2IUMpSa9RoGg9eFxrPZjiaT-ZPA2AWQDywzBzE
+
+
+###
+GET {{host1}}/app1/v1/auth/check?jwt={{jwt}}
 
 ###
 GET {{host1}}/app1/v1/auth/rnd
-Authorization: {{jwt}}
+Authorization: Bearer {{jwt}}
 
 ###
 GET {{host1}}/app1/v1/rpt/info

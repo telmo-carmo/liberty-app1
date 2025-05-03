@@ -3,18 +3,7 @@ package pt.dsi.dpi.rest;
 /*
  
 
-maybe add this to pom.xml !!!
-
-<dependency>
-    <groupId>org.eclipse.microprofile.jwt</groupId>
-    <artifactId>microprofile-jwt-auth-api</artifactId>
-    <version>2.0.0</version>
-</dependency>
-<dependency>
-    <groupId>org.eclipse.microprofile.jwt</groupId>
-    <artifactId>microprofile-jwt-auth</artifactId>
-    <version>1.2</version>
-</dependency>
+JWT auth stuff
 
  */
 import jakarta.inject.Inject;
@@ -29,35 +18,20 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
-
-import java.security.Key;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-
-import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 @Path("/auth")
-public class AuthResource {
+public class    AuthResource {
     private static final Logger logger = Logger.getLogger(AuthResource.class.getName());
 
     @Inject
-    @ConfigProperty(name = "app.jwt.duration", defaultValue = "3600") // 1 hour default
-    long jwt_duration;
-
-    @Inject
-    @ConfigProperty(name = "app.jwt.secret", defaultValue = "my-secret-symmetric-key in 32 BY") // 256 bit key
-    String jwt_Secret;
+    JWTTokenService jwtTokenService;
 
     @POST
     @Path("/login")
@@ -67,31 +41,18 @@ public class AuthResource {
             @FormParam("username") String username,
             @FormParam("password") String password) {
         logger.info("Generating JWToken for user: " + username);
-        logger.info("JWT duration: " + jwt_duration);
+       
         String token = null;
-        String u_uid = null;
-        if ("123".equals(password) || "321".equals(password)) {
-            u_uid = "01";
+        UserInfo uinfo = null;
+        if ("123".equals(password) ) {
+            uinfo = new UserInfo(1,username,"***", List.of("user"));
         }
-        
-        if (u_uid != null) {
-            Instant expirationTime = Instant.now().plus(jwt_duration * 1000, ChronoUnit.MILLIS);
-            Date expirationDate = Date.from(expirationTime);
-            logger.info("JWT expires at " + expirationDate);
-            // SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretString));
-            Key key = Keys.hmacShaKeyFor(jwt_Secret.getBytes());
-            String bp_audience = "https://wwwcert.bportugal.net/adfs/oauth2/token";
-            //Collection<String> audienceList = new ArrayList<>();
-            //audienceList.add(bp_audience);
+        else if ( "321".equals(password)) {
+            uinfo = new UserInfo(1,username,"***", List.of("user","admin"));
+        }
 
-            token = Jwts.builder()
-                    .claim("id", u_uid)
-                    .claim("sub", username)
-                    .claim("roles", new String[]{"user", "admin"})
-                    .expiration(expirationDate)
-                    .claim("aud", bp_audience)
-                    .signWith(key)
-                    .compact();
+        if (uinfo != null) {
+            token = jwtTokenService.generateToken(uinfo);
         } else {
             logger.log(Level.SEVERE,"Invalid login credentials");
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid credentials").build();
@@ -100,7 +61,7 @@ public class AuthResource {
 
         map1.put("username", username);
         if (token != null) {
-            map1.put("token", "Bearer " + token);
+            map1.put("token",  token);
             map1.put("error", null);
         } else {
             map1.put("token", null);
@@ -112,14 +73,35 @@ public class AuthResource {
     }
 
     @GET
+    @Path("/check")
+    public Response checkJwt(@QueryParam("jwt") String jwt) {
+        if (jwt == null || jwt.isEmpty())
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("The 'jwt' query parameter is required.").build();
+        try {
+            UserInfo userInfo = jwtTokenService.parseToken(jwt);
+            if (userInfo != null) {
+                logger.info("JWT token is valid. User: " + userInfo.getUsername());
+                return Response.ok(userInfo,MediaType.APPLICATION_JSON).build();
+            } else {
+                logger.warning("JWT token is invalid.");
+                return Response.status(Response.Status.UNAUTHORIZED)
+                        .entity("Invalid JWT token.").build();
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error reading JWT token" + e);
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity("Invalid JWT token. error: " + e.getMessage()).build();
+        }
+    }
+    @GET
     @Path("/rnd")
     public double rnd(@HeaderParam("Authorization") String authorizationHeader) {
         if (authorizationHeader != null && !authorizationHeader.isEmpty()) {
             logger.info("Authorization Header: " + authorizationHeader);
             try {
-                // String subject = jwt.getSubject();
-                // String groups = jwt.getClaim("groups").toString(); // Access a custom claim
-                // logger.info(String.format("Secured resource accessed by: %s, Groups: %s" ,subject, groups));
+                UserInfo userInfo = jwtTokenService.parseToken(authorizationHeader.replace("Bearer ", ""));
+                logger.info(String.format("Secured resource accessed by: %s" ,userInfo));
             } catch (Exception e) {
                 logger.log(Level.SEVERE, "Error reading JWT token" + e);
             }
