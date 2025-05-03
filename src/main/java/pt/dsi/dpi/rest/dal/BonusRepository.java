@@ -1,5 +1,36 @@
 package pt.dsi.dpi.rest.dal;
 
+/*
+
+    <library id="sqlite-library">
+        <fileset dir="${shared.resource.dir}/" includes="sqlite*.jar" />
+    </library>
+
+    <dataSource id="DefaultDataSource" jndiName="jdbc/appDB1">
+        <jdbcDriver libraryRef="sqlite-library" />
+        <properties>
+            <property name="URL"          value="jdbc:sqlite:${db.path}"/>
+            <property name="databaseName" value="${db.path}"/>
+        </properties>
+
+    </dataSource>
+---
+FOR Postgres DB:
+
+<library id="postgresql-library">
+    <fileset dir="${shared.resource.dir}/" includes="*.jar" />
+ </library>
+
+ <dataSource id="DefaultDataSource" jndiName="jdbc/appDB1">
+    <jdbcDriver libraryRef="postgresql-library" />
+    <properties.postgresql  databaseName="scottdb"
+                            serverName="localhost"
+                            portNumber="5432"
+                            user="scott"
+                            password="tiger" />
+</dataSource>
+
+ */
 import jakarta.annotation.Resource;
 import jakarta.enterprise.context.ApplicationScoped;
 import javax.sql.DataSource;
@@ -19,21 +50,39 @@ public class BonusRepository implements IBonusRepository {
     @Resource(lookup = "jdbc/appDB1")
     DataSource dataSource;
 
-
+    // org.sqlite.javax.SQLiteConnectionPoolDataSource.
+    //
     @Override
     public int count() {
         String query = "SELECT COUNT(*) FROM Bonus";
         logger.debug("Executing count query: " + query);
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                int count = resultSet.getInt(1);
-                logger.info("Count Bonus query result: " + count);
-                return count;
+
+        logger.warn("DataSource Class: " + dataSource.getClass().getName());
+
+        try (Connection connection = dataSource.getConnection()) {
+            var meta = connection.getMetaData();
+            logger.warn("DataSource Conn Class: " + meta.getClass().getName());
+            logger.warn("DataSource Conn Driver: " + meta.getDriverName());
+            logger.warn("DataSource Conn User: " + meta.getUserName());
+            logger.warn("DataSource Conn DB: " + meta.getDatabaseProductName());
+            logger.warn("DataSource Conn DB Version: " + meta.getDatabaseProductVersion());
+            logger.warn("DataSource Conn URL: " + meta.getURL());
+
+            try (
+                 PreparedStatement statement = connection.prepareStatement(query);
+                 ResultSet resultSet = statement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    logger.info("Count Bonus query result: " + count);
+                    return count;
+                }
+            } catch (SQLException e) {
+                logger.error("Error executing count query", e);
             }
+
         } catch (SQLException e) {
-            logger.error("Error executing count query", e);
+            logger.error("Error getting connection from DataSource", e);
         }
         return 0;
     }

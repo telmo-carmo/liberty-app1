@@ -49,12 +49,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.49.1.0</version>
-            <scope>provided</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -112,9 +106,9 @@
                         <dependencyGroup>
                             <location>${project.build.directory}/liberty/wlp/usr/shared/resources</location>
                             <dependency>
-                                <groupId>org.xerial</groupId>
-                                <artifactId>sqlite-jdbc</artifactId>
-                                <version>3.49.1.0</version>
+                                <groupId>org.postgresql</groupId>
+                                <artifactId>postgresql</artifactId>
+                                <version>42.7.5</version>
                             </dependency>
                         </dependencyGroup>
                     </copyDependencies>

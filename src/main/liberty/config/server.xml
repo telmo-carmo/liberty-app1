@@ -4,6 +4,8 @@
     <variable name="https.port"   defaultValue="9443"/>
     <variable name="context.root" defaultValue="/app1" />
 
+    <variable name="db.path" defaultValue="/home/tacarmo/vcode/liberty-app1/sqlite/db1.db" />
+
     <!-- Enable features -->
     <featureManager>
         <feature>jakartaee-10.0</feature>
@@ -77,17 +79,17 @@
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 
    <logging consoleLogLevel="INFO" traceSpecification="pt.dsi.dpi*=debug"/>
-
-    <library id="sqlite-library">
-        <fileset dir="${shared.resource.dir}/" includes="sqlite*.jar" />
+    <library id="postgresql-library">
+        <fileset dir="${shared.resource.dir}/" includes="*.jar" />
     </library>
 
     <dataSource id="DefaultDataSource" jndiName="jdbc/appDB1">
-        <jdbcDriver libraryRef="sqlite-library" />
-        <properties>
-            <property name="url" value="jdbc:sqlite:./sqlite/db1.db"/>
-        </properties>
-
+        <jdbcDriver libraryRef="postgresql-library" />
+        <properties.postgresql  databaseName="scottdb"
+                                serverName="localhost"
+                                portNumber="5432"
+                                user="scott"
+                                password="tiger" />
     </dataSource>
 
 </server>

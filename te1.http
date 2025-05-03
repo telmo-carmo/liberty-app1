@@ -33,6 +33,9 @@ Authorization: Basic bob:321
 GET {{host1}}/app1/v1/api/bonus
 
 ###
+GET {{host1}}/app1/v1/api/bonus/count
+
+###
 GET {{host1}}/app1/v1/api/bonus/JONES
 
 ###
