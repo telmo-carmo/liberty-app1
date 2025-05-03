@@ -3,9 +3,16 @@ package  pt.dsi.dpi.rest.dal;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Schema(name = "Bonus",
-description = "POJO that represents the Employee Bonus contents.")
+        description = "POJO that represents the Employee Bonus contents.")
+@Entity
+@Table(name = "Bonus")
 public class Bonus {
+    @Id
     private String   ename;
     private String   job;
     private int      sal;

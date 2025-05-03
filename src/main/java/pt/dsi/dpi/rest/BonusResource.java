@@ -35,7 +35,6 @@ public class BonusResource {
         return bonus;}
 
     @POST
-     @Transactional
     public Response create(Bonus bonus) {
         bonusRepository.save(bonus);
         return Response.status(Response.Status.CREATED).entity(bonus).build();
@@ -43,7 +42,6 @@ public class BonusResource {
 
     @PUT
     @Path("/{id}")
-    @Transactional
     public Response update(@PathParam("id") String id, Bonus bonus) {
         Bonus existingBonus = bonusRepository.findOne(id);
         if (existingBonus == null) {
@@ -58,7 +56,6 @@ public class BonusResource {
 
     @DELETE
     @Path("/{id}")
-    @Transactional
     public Response delete(@PathParam("id") String id) {
         boolean deleted = bonusRepository.delete(id);
         if (!deleted) {

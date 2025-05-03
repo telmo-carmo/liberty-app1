@@ -29,7 +29,7 @@ public class BonusRepository implements IBonusRepository {
              ResultSet resultSet = statement.executeQuery()) {
             if (resultSet.next()) {
                 int count = resultSet.getInt(1);
-                logger.info("Count query result: " + count);
+                logger.info("Count Bonus query result: " + count);
                 return count;
             }
         } catch (SQLException e) {
@@ -59,7 +59,7 @@ public class BonusRepository implements IBonusRepository {
     @Override
     public Bonus findOne(String ename) {
         String query = "SELECT * FROM Bonus WHERE ename = ?";
-        logger.warn("Executing findOne query for ename: {}", ename);
+        logger.warn("Executing findOne query for Bonus ename: {}", ename);
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, ename);
