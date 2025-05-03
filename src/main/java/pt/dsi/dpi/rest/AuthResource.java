@@ -33,11 +33,56 @@ public class    AuthResource {
     @Inject
     JWTTokenService jwtTokenService;
 
+    public static class LoginReq {
+        public String uid;
+        public String pwd;
+        public String aut;
+    }
+
+        
     @POST
     @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response login(LoginReq loginReq) {
+        String username = loginReq.uid;
+        logger.info("Generating JWToken for user: " + username);
+       
+        String token = null;
+        UserInfo uinfo = null;
+        if ("123".equals(loginReq.pwd) ) {
+            uinfo = new UserInfo(2,username,"***", List.of("user"));
+        }
+        else if ( "321".equals(loginReq.pwd)) {
+            uinfo = new UserInfo(1,username,"***", List.of("user","admin"));
+        }
+
+        if (uinfo != null) {
+            token = jwtTokenService.generateToken(uinfo);
+        } else {
+            logger.log(Level.SEVERE,"Invalid login credentials");
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid credentials").build();
+        }
+        Map<String, String> map1 = new HashMap<>();
+
+        map1.put("username", username);
+        if (token != null) {
+            map1.put("token",  token);
+            map1.put("error", null);
+        } else {
+            map1.put("token", null);
+            map1.put("error", "Error generating JWT");
+        }
+        logger.info(String.format("AuthResource.login JWT token=%s", token));
+        
+        return Response.ok(map1,MediaType.APPLICATION_JSON).build();
+    }
+
+    @POST
+    @Path("/loginfm")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(
+    public Response loginForm(
             @FormParam("username") String username,
             @FormParam("password") String password) {
         logger.info("Generating JWToken for user: " + username);
@@ -67,7 +112,7 @@ public class    AuthResource {
             map1.put("token", null);
             map1.put("error", "Error generating JWT");
         }
-        logger.info(String.format("AuthResource.login JWT token=%s", token));
+        logger.info(String.format("AuthResource.loginfm JWT token=%s", token));
         
         return Response.ok(map1,MediaType.APPLICATION_JSON).build();
     }
