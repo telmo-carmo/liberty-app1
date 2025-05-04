@@ -34,7 +34,7 @@ public class DeptService {
     public void update(Long id,Dept ud) {
         Dept d = em.find(Dept.class, id);
         if (d != null) {
-            em.merge(new Dept(d.deptno(), ud.dname(), ud.loc()));
+            em.merge(new Dept(d.getDeptno(), ud.getDname(), ud.getLoc()));
         }
     }
 

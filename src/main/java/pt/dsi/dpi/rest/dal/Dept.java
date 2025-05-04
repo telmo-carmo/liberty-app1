@@ -31,7 +31,7 @@ public class Dept implements Serializable {
     }
 
 
-    public Long deptno() {
+    public Long getDeptno() {
         return deptno;
     }
 
@@ -39,7 +39,7 @@ public class Dept implements Serializable {
         this.deptno = deptno;
     }
 
-    public String dname() {
+    public String getDname() {
         return dname;
     }
 
@@ -47,7 +47,7 @@ public class Dept implements Serializable {
         this.dname = dname;
     }
 
-    public String loc() {
+    public String getLoc() {
         return loc;
     }
 
