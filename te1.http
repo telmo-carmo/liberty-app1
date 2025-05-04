@@ -83,3 +83,19 @@ Authorization: Bearer {{jwt}}
 GET {{host1}}/app1/v1/rpt/info
 
 # http://localhost:9080/app1/v1/rpt/excel1
+
+###
+GET {{host1}}/app1/v1/api/dept/20
+
+###
+POST {{host1}}/app1/v1/api/dept
+Content-Type: application/json
+
+{
+    "deptno": 50,
+    "dname": "ACCOUNTING",
+    "loc": "PARIS"
+}
+
+###
+DELETE {{host1}}/app1/v1/api/dept/50
