@@ -4,7 +4,7 @@
     <variable name="https.port"   defaultValue="9443"/>
     <variable name="context.root" defaultValue="/app1" />
 
-    <variable name="dbPath" defaultValue="/home/tacarmo/vcode/liberty-app1/sqlite/db1.db" />
+    <variable name="dbPath" defaultValue="C:/ecc/workspace/liberty-app1/sqlite/db1.db" />
 
     <!-- Enable features -->
     <featureManager>
