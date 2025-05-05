@@ -2,7 +2,7 @@ package pt.dsi.dpi.rest.dal;
 
 /*
  -- For SQLITE local db:
- 
+
     <library id="sqlite-library">
         <fileset dir="${shared.resource.dir}/" includes="sqlite*.jar" />
     </library>
@@ -15,6 +15,8 @@ package pt.dsi.dpi.rest.dal;
         </properties>
 
     </dataSource>
+
+    // also add dependency in pom.xml for artifactId sqlite-jdbc
 ---
 FOR Postgres DB:
 
@@ -48,7 +50,7 @@ public class BonusRepository implements IBonusRepository {
     private static final Logger logger = LoggerFactory.getLogger(BonusRepository.class);
 
     //Resource(lookup = "java:comp/env/jdbc/appDB1")
-    @Resource(lookup = "jdbc/appDB1")
+    @Resource(lookup = "jdbc/appDB2")
     DataSource dataSource;
 
     // org.sqlite.javax.SQLiteConnectionPoolDataSource.

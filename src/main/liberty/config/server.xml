@@ -4,7 +4,7 @@
     <variable name="https.port"   defaultValue="9443"/>
     <variable name="context.root" defaultValue="/app1" />
 
-    <variable name="db.path" defaultValue="/home/tacarmo/vcode/liberty-app1/sqlite/db1.db" />
+    <variable name="dbPath" defaultValue="/home/tacarmo/vcode/liberty-app1/sqlite/db1.db" />
 
     <!-- Enable features -->
     <featureManager>
@@ -92,5 +92,16 @@
                                 user="scott"
                                 password="tiger" />
     </dataSource>
+
+    <library id="sqlite-library">
+        <fileset dir="${shared.resource.dir}/" includes="sqlite*.jar" />
+    </library>
+
+    <dataSource id="SQLiteDataSource" jndiName="jdbc/appDB2">
+        <jdbcDriver libraryRef="sqlite-library" />
+        <properties.sqlite databaseName="${dbPath}"   URL="jdbc:sqlite:${db.path}"  />
+    </dataSource>
+
+
 
 </server>
