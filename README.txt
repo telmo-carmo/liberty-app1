@@ -71,3 +71,105 @@ mvn liberty:dev      # start in foreground (dev mode)
 mvn liberty:run      # start in foreground (non-dev mode)
 
 ----
+The GraphQL UI can be accessed from http://localhost:9080/app1/graphql-ui 
+
+Schema at http://localhost:9080/app1/graphql/schema.graphql 
+
+GraphQL queries:
+
+query allFilms {
+  allFilms {
+    title
+    director
+    releaseDate
+    episodeID
+  }
+}
+
+--
+query getFilm {
+  film(filmId: 1) {
+    title
+    director
+    releaseDate
+    episodeID
+  }
+}
+
+
+
+--
+query getFilmHeroes {
+  film(filmId: 1) {
+    title
+    director
+    releaseDate
+    episodeID
+    heroes {
+      name
+      height
+      mass
+      darkSide
+      lightSaber
+    }
+  }
+}
+
+-- this gives error!!
+mutation CreateHero {
+  createHero(hero: {
+    name: "Brian",
+    surname: "Vader",
+    height: 1.9,
+    mass: 70,
+    episodeIds: [1, 5, 6],
+    darkSide: false,
+    lightSaber: "BLUE"
+  }) {
+    name
+    surname
+    height
+    mass
+    episodeIds
+    darkSide
+    lightSaber
+  }
+}
+
+-- this works:
+
+mutation {
+  newHero(
+    name: "Javali",
+    surname: "Vader",
+    darkSide: false
+  )
+}
+
+--
+query  {
+  heroesWithSurname(surname: "Vader") {
+    name
+    surname
+    height
+    mass
+    episodeIds
+    darkSide
+    lightSaber
+  }
+}
+
+--
+mutation {
+  deleteHero(idx: 3) 
+   {
+      name
+      surname
+      height
+      mass
+      episodeIds
+      darkSide
+      lightSaber
+   }
+}
+-----------

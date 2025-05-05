@@ -13,8 +13,10 @@
 
         <feature>jdbc-4.3</feature>
         <feature>jndi-1.0</feature>
-
+        <feature>mpGraphQL-2.0</feature>
     </featureManager>
+
+     <variable name="io.openliberty.enableGraphQLUI" value="true" />
 
     <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
 
