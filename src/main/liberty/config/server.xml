@@ -78,9 +78,10 @@
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 
-   <logging consoleLogLevel="INFO" traceSpecification="pt.dsi.dpi*=debug"/>
+    <logging consoleLogLevel="INFO" traceSpecification="pt.dsi.dpi*=debug"/>
+
     <library id="postgresql-library">
-        <fileset dir="${shared.resource.dir}/" includes="*.jar" />
+        <fileset dir="${shared.resource.dir}/" includes="postgre*.jar" />
     </library>
 
     <dataSource id="DefaultDataSource" jndiName="jdbc/appDB1">

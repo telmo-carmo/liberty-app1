@@ -52,6 +52,10 @@ Content-Type: application/json
 ###
 GET http://localhost:9080/openapi/ui/
 
+# OpenAPI 3.1 spec:
+###
+GET http://localhost:9080/openapi
+
 ###
 POST {{host1}}/app1/v1/auth/loginfm
 Content-Type: application/x-www-form-urlencoded
@@ -69,7 +73,8 @@ Content-Type: application/json
 }
 
 ###
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwic3ViIjoiYWxpY2UiLCJyb2xlcyI6InVzZXIiLCJleHAiOjE3NDYyOTQ3NjksImlhdCI6MTc0NjI4NzU2OSwiYXVkIjpbImh0dHBzOi8vZHNpY2VydC5ub3ZvYmFuY28ucHQvb2F1dGgyL3Rva2VuIl19.3OemhORFIh-tHegfqGRfjTujAXYTx5YkL-Izgbe0mlU
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwic3ViIjoiYm9iIiwicm9sZXMiOiJ1c2VyO2FkbWluIiwiZXhwIjoxNzQ2NDQwODkyLCJpYXQiOjE3NDY0MzM2OTIsImF1ZCI6WyJodHRwczovL2RzaWNlcnQubm92b2JhbmNvLnB0L29hdXRoMi90b2tlbiJdfQ.I_pmmGzmEdUTISbMTMSJDDBCHWOs4AqZyHwovzH2qpY
+
 
 
 ###
@@ -85,7 +90,7 @@ GET {{host1}}/app1/v1/rpt/info
 # http://localhost:9080/app1/v1/rpt/excel1
 
 ###
-GET {{host1}}/app1/v1/api/dept/20
+GET {{host1}}/app1/v1/api/dept
 
 ###
 POST {{host1}}/app1/v1/api/dept

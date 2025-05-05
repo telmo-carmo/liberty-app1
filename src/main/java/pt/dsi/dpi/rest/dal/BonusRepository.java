@@ -1,7 +1,8 @@
 package pt.dsi.dpi.rest.dal;
 
 /*
-
+ -- For SQLITE local db:
+ 
     <library id="sqlite-library">
         <fileset dir="${shared.resource.dir}/" includes="sqlite*.jar" />
     </library>
