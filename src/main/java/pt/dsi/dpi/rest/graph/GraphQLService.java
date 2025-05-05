@@ -64,8 +64,8 @@ public class GraphQLService {
     }
 
     @Mutation
-    @Description("Create a hero")
-    public Hero createHero(@Name("hero") Hero hero) { 
+    @Description("Create a hero")       // not Working, gives exception !!??
+    public Hero createHero( Hero hero) { 
         logger.info("Creating hero " + hero);
         service.addHero(hero);
         ///processor.onNext(hero);
