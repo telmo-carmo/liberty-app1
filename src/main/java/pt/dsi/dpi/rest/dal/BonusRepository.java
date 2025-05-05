@@ -44,13 +44,15 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
 @ApplicationScoped
 public class BonusRepository implements IBonusRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(BonusRepository.class);
 
     //Resource(lookup = "java:comp/env/jdbc/appDB1")
-    @Resource(lookup = "jdbc/appDB2")
+    @Resource(lookup = "jdbc/appDB1")
     DataSource dataSource;
 
     // org.sqlite.javax.SQLiteConnectionPoolDataSource.

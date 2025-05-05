@@ -99,7 +99,7 @@
 
     <dataSource id="SQLiteDataSource" jndiName="jdbc/appDB2">
         <jdbcDriver libraryRef="sqlite-library" />
-        <properties.sqlite databaseName="${dbPath}"   URL="jdbc:sqlite:${db.path}"  />
+        <properties databaseName="${dbPath}"   URL="jdbc:sqlite:${db.path}"  />
     </dataSource>
 
 
