@@ -87,20 +87,21 @@ public class GraphQLService {
     }
 
     @Mutation
-    @Description("Create a new mini hero, returns the new hero index")
+    @Description("Create a new mini Hero, returns the new hero index")
     public int newHero(
-                @Name("name") @NonNull String name,
-                @Name("surname") @NonNull String surname,
-                @Name("darkSide") boolean darkSide) {
+                @Name("name") @NonNull      String name,
+                @Name("surname") @NonNull   String surname,
+                @Name("mass") @NonNull      int mass,
+                @Name("darkSide")           boolean darkSide) {
         Hero hero = new Hero();
         hero.setName(name);
         hero.setSurname(surname);
         hero.setHeight(1.5);
-        hero.setMass(50);
+        hero.setMass(mass);
         hero.setDarkSide(darkSide);
         hero.getEpisodeIds().addAll(Arrays.asList(4));
-        logger.info("Creating newHero " + hero);
         int idx = service.addHero(hero);
+        logger.info("Creating newHero " + hero + " with index " + idx);
         return idx;
     }
 

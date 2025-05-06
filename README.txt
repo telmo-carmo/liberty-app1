@@ -139,6 +139,7 @@ mutation {
   newHero(
     name: "Javali",
     surname: "Vader",
+    mass:  60,
     darkSide: false
   )
 }
