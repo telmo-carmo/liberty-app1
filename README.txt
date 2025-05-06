@@ -115,24 +115,21 @@ query getFilmHeroes {
   }
 }
 
--- this gives error!!
+-- 
 mutation CreateHero {
-  createHero(hero: {
+  createHero(
     name: "Brian",
     surname: "Vader",
     height: 1.9,
     mass: 70,
-    episodeIds: [1, 5, 6],
-    darkSide: false,
     lightSaber: "BLUE"
-  }) {
+    darkSide: false,
+    episodeIds: [1, 5, 6]
+  ) {
     name
     surname
     height
-    mass
     episodeIds
-    darkSide
-    lightSaber
   }
 }
 

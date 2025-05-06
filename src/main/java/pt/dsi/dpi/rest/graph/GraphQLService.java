@@ -16,9 +16,7 @@ Access GraphiQL at  http://localhost:9080/app1/graphql-ui
 import java.util.List;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DefaultValue;
-import jakarta.ws.rs.ProcessingException;
 
-//import io.smallrye.mutiny.operators.multi.processors.BroadcastProcessor;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.graphql.NonNull;
@@ -41,7 +39,6 @@ public class GraphQLService {
     @Inject
     GalaxyService service;
 
-    ///private final BroadcastProcessor<Hero> processor = BroadcastProcessor.create();
 
     @Query("allFilms")
     @NonNull
@@ -52,7 +49,7 @@ public class GraphQLService {
     }
 
     @Query
-    @Description("Get a Films for filmId N")
+    @Description("Get a Film for filmId N")
     public Film getFilm(@Name("filmId") int id) {
         logger.info("Getting film with id " + id);
         return service.getFilm(id);
@@ -65,18 +62,35 @@ public class GraphQLService {
 
     @Mutation
     @Description("Create a hero")       // not Working, gives exception !!??
-    public Hero createHero( Hero hero) { 
+    public Hero createHero(
+                @Name("name") @NonNull      String name,
+                @Name("surname") @NonNull   String surname,
+                @Name("height")             double height,
+                @Name("mass")               int mass,
+                @Name("lightSaber")         LightSaber lightSaber,
+                @Name("darkSide")           boolean darkSide,
+                @Name("episodeIds")         List<Integer> episodeIds
+                ) { 
+        Hero hero = new Hero();
+        hero.setName(name);
+        hero.setSurname(surname);
+        hero.setHeight(height);
+        hero.setMass(mass);
+        hero.setLightSaber(lightSaber);
+        hero.setDarkSide(darkSide);
+        hero.getEpisodeIds().addAll(episodeIds);
+
         logger.info("Creating hero " + hero);
-        service.addHero(hero);
-        ///processor.onNext(hero);
+        int i = service.addHero(hero);
+        logger.warning("Created hero with index " + i);
         return hero;
     }
 
     @Mutation
     @Description("Create a new mini hero, returns the new hero index")
     public int newHero(
-                @Name("name") String name,
-                @Name("surname") String surname,
+                @Name("name") @NonNull String name,
+                @Name("surname") @NonNull String surname,
                 @Name("darkSide") boolean darkSide) {
         Hero hero = new Hero();
         hero.setName(name);
@@ -99,15 +113,11 @@ public class GraphQLService {
 
     @Query
     public List<Hero> getHeroesWithSurname(@DefaultValue("Skywalker") String surname) {
-        logger.info("Getting heroes with surname " + surname);
-        return service.getHeroesBySurname(surname);
+        List<Hero> l = service.getHeroesBySurname(surname);
+        logger.info("Found " + l.size() + " heroes with surname " + surname);
+        return l;
     }
 
-
-    // @Subscription
-    // public Multi<Hero> heroCreated() {
-    //     return processor;
-    // }
 
 }
 

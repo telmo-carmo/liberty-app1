@@ -9,7 +9,7 @@ import org.eclipse.microprofile.graphql.NonNull;
 import org.eclipse.microprofile.graphql.Type;
 
 @Type("Hero")
-@Description("A Film Hero description")
+@Description("A film Hero description")
 public class Hero {
     @NonNull
     private String name;
