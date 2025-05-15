@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <poi.version>5.4.0</poi.version>
+        <poi.version>5.4.1</poi.version>
         <io.jjwt.version>0.12.6</io.jjwt.version>
 
         <maven.compiler.source>21</maven.compiler.source>
