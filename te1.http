@@ -111,23 +111,13 @@ GET http://localhost:9080/app1/v1/rpt/info
 @HOST1 = http://localhost:9080
 
 ###
-POST {{HOST1}}/graphql
+POST {{HOST1}}/app1/graphql
 Content-Type: application/json
 
 {
-  "query": 
-"
-query getFilm {
-  film(filmId: 1) {
-    title
-    director
-    releaseDate
-    episodeID
-  }
-}
-"
+  "query": "query getFilm {  film(filmId: 1) {     title, director, releaseDate,  episodeID  } }"
 }
 
 # get GraphQL data schema
 ###
-GET {{HOST1}}/graphql/schema.graphql
+GET {{HOST1}}/app1/graphql/schema.graphql
