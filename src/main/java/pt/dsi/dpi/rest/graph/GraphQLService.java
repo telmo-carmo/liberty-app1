@@ -18,7 +18,6 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.DefaultValue;
 
 
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.graphql.NonNull;
 import org.eclipse.microprofile.graphql.Description;
 import org.eclipse.microprofile.graphql.GraphQLApi;

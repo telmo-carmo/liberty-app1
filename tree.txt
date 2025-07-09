@@ -1,5 +1,3 @@
-mvn dependency:tree
-
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] ----------------------< pt.dsi.dpi:liberty-app1 >-----------------------
@@ -77,6 +75,6 @@ mvn dependency:tree
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  2.908 s
-[INFO] Finished at: 2025-05-15T16:33:43+01:00
+[INFO] Total time:  7.772 s
+[INFO] Finished at: 2025-07-09T11:43:27+01:00
 [INFO] ------------------------------------------------------------------------

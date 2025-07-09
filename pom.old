@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <poi.version>5.4.0</poi.version>
+        <poi.version>5.4.1</poi.version>
         <io.jjwt.version>0.12.6</io.jjwt.version>
 
         <maven.compiler.source>21</maven.compiler.source>
@@ -49,12 +49,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.7.5</version>
-            <scope>provided</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -85,6 +79,15 @@
             <scope>runtime</scope>
         </dependency>
         
+        <!-- Required dependencies for  GraphQL -->
+
+        <dependency>
+            <groupId>org.eclipse.microprofile.graphql</groupId>
+            <artifactId>microprofile-graphql-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -116,34 +119,14 @@
                                 <artifactId>postgresql</artifactId>
                                 <version>42.7.5</version>
                             </dependency>
+                            <dependency>
+                                <groupId>org.xerial</groupId>
+                                <artifactId>sqlite-jdbc</artifactId>
+                                <version>3.49.1.0</version>
+                            </dependency>
                         </dependencyGroup>
                     </copyDependencies>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-                <executions>
-                    <execution>
-                        <id>copy-keystore</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/defaultServer/resources/security</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>src/main/resources/security</directory>
-                                    <includes>
-                                        <include>jwtkeystore.jceks</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
         </plugins>
