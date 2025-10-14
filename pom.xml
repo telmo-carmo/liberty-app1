@@ -11,7 +11,7 @@
 
     <properties>
         <poi.version>5.4.1</poi.version>
-        <io.jjwt.version>0.12.6</io.jjwt.version>
+        <io.jjwt.version>0.13.0</io.jjwt.version>
 
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -102,7 +102,7 @@
                 <plugin>
                     <groupId>io.openliberty.tools</groupId>
                     <artifactId>liberty-maven-plugin</artifactId>
-                    <version>3.11.4</version>
+                    <version>3.11.5</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -117,7 +117,7 @@
                             <dependency>
                                 <groupId>org.postgresql</groupId>
                                 <artifactId>postgresql</artifactId>
-                                <version>42.7.7</version>
+                                <version>42.7.8</version>
                             </dependency>
                             <dependency>
                                 <groupId>org.xerial</groupId>

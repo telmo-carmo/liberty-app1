@@ -1,3 +1,6 @@
+https://openliberty.io/blog/2025/10/07/25.0.0.10.html
+
+
 After you generate a starter project, these instructions will help you with what to do next.
 
 The Open Liberty starter gives you a simple, quick way to get the necessary files to start building
@@ -60,7 +63,7 @@ which is an industry standard format using
 copy jwtkeystore.jceks  to  src/main/resources/security
 ------------
 works on Ubuntu with  
-Launching defaultServer (Open Liberty 25.0.0.4/wlp-1.0.100.cl250420250407-1902) on OpenJDK 64-Bit Server VM, version 21.0.6+7-LTS (en_US)
+Launching defaultServer (Open Liberty 25.0.0.10/wlp-1.0.100.cl250420250407-1902) on OpenJDK 64-Bit Server VM, version 21.0.6+7-LTS (en_US)
 
 ---
 mvn clean package
