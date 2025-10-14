@@ -41,14 +41,14 @@ public class RptResource {
 
 
     @GET
-    @Path("/info")
+    @Path("/info")                              // http://localhost:9080/app1/v1/rpt/info
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, String> getInfo() {
         Map<String, String> status = new HashMap<>();
         status.put("java.version", System.getProperty("java.version"));
         status.put("java.vendor", System.getProperty("java.vendor"));
         
-        // Retrieve Open Liberty version, current Oct/2025: 25.0.0.10
+        // Retrieve Open Liberty version, current Oct/2025: (Open Liberty 25.0.0.10/wlp-1.0.106.cl251020250923-1355) 
         String libertyVersion =   "Open Liberty 25.0.0.10"; //VersionInfo.getVersion();
         status.put("openliberty.version", libertyVersion);
 
