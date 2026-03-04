@@ -48,8 +48,8 @@ public class RptResource {
         status.put("java.version", System.getProperty("java.version"));
         status.put("java.vendor", System.getProperty("java.vendor"));
         
-        // Retrieve Open Liberty version, current Oct/2025: (Open Liberty 25.0.0.10/wlp-1.0.106.cl251020250923-1355) 
-        String libertyVersion =   "Open Liberty 26.0.0.1"; //VersionInfo.getVersion();
+        // Retrieve Open Liberty version, current Mar/2026: (Open Liberty 26.0.0.2/wlp-1.0.110.cl260220260207-1901) 
+        String libertyVersion =   "Open Liberty 26.0.0.2"; //VersionInfo.getVersion();
         status.put("openliberty.version", libertyVersion);
 
         Date now = new Date();
