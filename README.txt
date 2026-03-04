@@ -1,5 +1,6 @@
 https://openliberty.io/blog/2025/10/07/25.0.0.10.html
 
+Mar/2026: (Open Liberty 26.0.0.2/wlp-1.0.110
 
 After you generate a starter project, these instructions will help you with what to do next.
 
