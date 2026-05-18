@@ -15,3 +15,5 @@ logs/
 .idea/
 *.iml
 *.ipr
+.vscode/
+.idea/
